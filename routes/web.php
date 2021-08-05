@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Phpml\Classification\NaiveBayes;
 use App\Sentimen;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,8 +34,8 @@ Route::get('/admin/profil', 'AdminController@profil')->name('profil');
 Route::get('/admin/profil/edit/', 'AdminController@edit_profil')->name('edit-profil');
 Route::post('/admin/profil/update/{id}', 'AdminController@update_profil')->name('update-profil');
 
-//Analisis Sentimen
-Route::get('/admin/analisis-sentimen', 'KlasifikasiController@analisis_sentimen')->name('analisis-sentimen');
+//Visualisasi
+Route::get('/admin/visualisasi', 'VisualisasiController@visualisasi')->name('visualisasi');
 
 //Data Training
 Route::get('/admin/data-training', 'DataTrainingController@index')->name('analisis-sentimen');
@@ -46,11 +47,7 @@ Route::post('/admin/data-training/import', 'DataTrainingController@import')->nam
 
 //Data Testing
 Route::get('/admin/data-testing', 'DataTestingController@index');
-
-//Stopwords
-Route::get('/admin/stopwords', 'StopwordsController@stopwords')->name('stopwords');
-Route::post('/admin/stopwords/import', 'StopwordsController@import_stopwords')->name('import_stopwords');
-
-//Singkatan
-Route::get('/admin/singkatan', 'KataSingkatanController@index');
-Route::post('/admin/singkatan/import', 'KataSingkatanController@import');
+Route::post('/admin/data-testing/predict', 'DataTestingController@predict');
+Route::get('/admin/data-testing/edit/{id}', 'DataTestingController@edit');
+Route::post('/admin/data-testing/update/{id}', 'DataTestingController@update');
+Route::get('/admin/data-testing/delete/{id}', 'DataTestingController@delete');

@@ -6,6 +6,8 @@
 
 @section('master-data', 'active')
 
+@section('open', 'menu-open')
+
 @section ('styles')
 <!-- DataTables -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
@@ -58,11 +60,11 @@
             </div>
             <div class="modal-body">
               <!-- form start -->
-              <form method="post" action="/admin/stopwords/import" enctype="multipart/form-data">
+              <form method="post" action="/admin/data-training/import" enctype="multipart/form-data">
                   {{ csrf_field()}}
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="">File stopwords harus dalam ekstensi .csv, .xls, .xlsx</label>
+                    <label for="">File harus dalam ekstensi .csv, .xls, .xlsx</label>
                     <input name="file" type="file" class="form-control" placeholder="Import Data Training..." required>
                   </div>
                 </div>
@@ -162,7 +164,7 @@
                       <a href="/admin/data-training/edit/{{$s->id}}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                       <a href="#" id="{{$s->id}}" nama="{{$s->twitter_account}}" class="btn btn-danger btn-sm delete"><i class="fas fa-trash-alt"></i></a>
                     </td>
-                    
+
                   </tr>
                   @endforeach
                   </tbody>
@@ -180,7 +182,7 @@
     </section>
     <!-- /.content -->
 
-    
+
 @section('javascripts')
 <!-- DataTables  & Plugins -->
 <script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
@@ -216,7 +218,7 @@
 <script>
   $('.delete').click(function(){
   var id_datatraining = $(this).attr('id');
-  var nama_akun = $(this).attr('nama') 
+  var nama_akun = $(this).attr('nama')
   Swal.fire({
     title: 'Yakin?',
     text: "Mau hapus sentimen dari "+nama_akun+ " ?",

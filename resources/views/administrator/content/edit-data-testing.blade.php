@@ -1,8 +1,8 @@
 @extends('administrator.layouts.app2')
 
-@section('title', 'Edit Data Training E-Sentyment Analysis')
+@section('title', 'Edit Data Testing E-Sentyment Analysis')
 
-@section('data-training', 'active')
+@section('data-testing', 'active')
 @section('master-data', 'active')
 @section('open', 'menu-open')
 
@@ -35,12 +35,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Edit Data Training</h1>
+            <h1>Edit Data Testing</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
-              <li class="breadcrumb-item active">Data Training</li>
+              <li class="breadcrumb-item active">Data Testing</li>
             </ol>
           </div>
         </div>
@@ -56,20 +56,20 @@
             <!-- general form elements -->
             <div class="card card-light">
               <div class="card-header">
-                <h3 class="card-title">Edit Data Training</h3>
+                <h3 class="card-title">Edit Data Testing</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form method="POST" action="/admin/data-training/update/{{$sentimen->id}}">
+              <form method="POST" action="/admin/data-testing/update/{{$raw_sentimen->id}}">
                   {{ csrf_field()}}
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleFormControlTextarea1">Sentimen</label>
-                    <textarea name="sentimen" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Masukkan Sentimen..." required>{{$sentimen->sentimen}}</textarea>
+                    <textarea name="sentimen" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Masukkan Sentimen..." required>{{$raw_sentimen->sentimen}}</textarea>
                   </div>
                   <div class="form-group">
                     <label for="">Akun Twitter</label>
-                    <input name="twitter_account" type="text" class="form-control" placeholder=" Masukkan Username Twitter Account..." value="{{$sentimen->twitter_account}}" required>
+                    <input name="twitter_account" type="text" class="form-control" placeholder=" Masukkan Username Twitter Account..." value="{{$raw_sentimen->twitter_account}}" required>
                   </div>
                   <div class="form-group">
                     <label for="">Tanggal dan Waktu:</label>
@@ -80,7 +80,7 @@
                     <select name="kategori_id" class="form-control" id="exampleFormControlSelect1" required>
                       <option>Pilih Kategori</option>
                       @foreach ($kategori as $k)
-                      <option value="{{$k->id}}" {{$k->id  == $sentimen->id  ? 'selected' :'' }}>
+                      <option value="{{$k->id}}" {{$k->id  == $raw_sentimen->id  ? 'selected' :'' }}>
                         {{$k->kategori}}
                       </option>
                       @endforeach

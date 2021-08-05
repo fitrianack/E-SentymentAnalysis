@@ -29,7 +29,7 @@
   <link href="{{ asset ('assets/css/style.css') }}" rel="stylesheet" type="text/css">
 
   <!-- Chart JS -->
- 
+
 
   <!-- =======================================================
   * Template Name: eStartup - v2.2.1
@@ -88,8 +88,8 @@
         </div>
       </div>
 
-      <div class="container-fluid">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1206524.8752788703!2d107.1356167155011!3d-6.825147970015075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6398252477f%3A0xbc18a454fc8e9d7e!2sJawa%20Barat!5e0!3m2!1sid!2sid!4v1623649017235!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      <div class="container-fluid" style="padding:0px">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1206524.8752788703!2d107.1356167155011!3d-6.825147970015075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6398252477f%3A0xbc18a454fc8e9d7e!2sJawa%20Barat!5e0!3m2!1sid!2sid!4v1623649017235!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="true" loading="lazy"></iframe>
       </div>
 
     </section><!-- End Get Started Section -->

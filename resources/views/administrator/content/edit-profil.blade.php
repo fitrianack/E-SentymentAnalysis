@@ -35,7 +35,7 @@
               <div class="card-body box-profile">
                 <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle"
-                       src="../../dist/img/user4-128x128.jpg"
+                       src="{{ url('/gambar-user/'.Auth::user()->gambar) }}"
                        alt="User profile picture">
                 </div>
 
@@ -69,7 +69,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Alamat</label>
-                        <textarea name="alamat" class="form-control" id="exampleFormControlTextarea1" rows="3" value="{{Auth::user()->alamat}}" required></textarea>
+                        <textarea name="alamat" class="form-control" id="exampleFormControlTextarea1" rows="3" required>{{Auth::user()->alamat}}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Kontak</label>

@@ -6,6 +6,8 @@
 
 @section('master-data', 'active')
 
+@section('open', 'menu-open')
+
 @section ('styles')
 <!-- DataTables -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
@@ -42,40 +44,7 @@
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         <i class="fas fa-plus-circle"></i> Tambah Data Testing
       </button>
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLong">
-        <i class="fas fa-upload"></i> Import Data Testing
-      </button>
-      <!-- Modal -->
-      <div id="exampleModalLong" class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Import Data Testing</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <!-- form start -->
-              <form method="post" action="/admin/stopwords/import" enctype="multipart/form-data">
-                  {{ csrf_field()}}
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="">File data testing harus dalam ekstensi .csv, .xls, .xlsx</label>
-                    <input name="file" type="file" class="form-control" placeholder="Import Data Testing..." required>
-                  </div>
-                </div>
-                <!-- /.card-body -->
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-success">Import</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
+
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -88,7 +57,7 @@
             </div>
             <div class="modal-body">
               <!-- form start -->
-              <form method="POST" action="/admin/data-testing/store">
+              <form method="POST" action="/admin/data-testing/predict">
                   {{ csrf_field()}}
                 <div class="card-body">
                   <div class="form-group">
@@ -102,6 +71,15 @@
                   <div class="form-group">
                     <label for="">Tanggal dan Waktu:</label>
                     <input name="tgl_waktu" type="datetime-local" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleFormControlSelect1">Kategori</label>
+                    <select name="kategori_id" class="form-control" id="exampleFormControlSelect1" required>
+                      <option>Pilih Kategori</option>
+                      @foreach ($kategori as $k)
+                      <option value="{{$k->id}}">{{$k->kategori}}</option>
+                      @endforeach
+                    </select>
                   </div>
                 </div>
                 <!-- /.card-body -->
@@ -132,6 +110,7 @@
                     <th>Tanggal</th>
                     <th>Akun Twitter</th>
                     <th>Kategori</th>
+                    <th>Predict Kategori</th>
                     <th>Aksi</th>
                   </tr>
                   </thead>
@@ -144,6 +123,14 @@
                     <td>{{$s->sentimen}}</td>
                     <td>{{$s->tgl_waktu}}</td>
                     <td>{{$s->twitter_account}}</td>
+                    <td>{{$s->kategoris->kategori}}</td>
+                    <td>
+                        @if($s->predict_kategori == 1)
+                            <span class="badge badge-pill badge-success">Positif</span>
+                        @elseif($s->predict_kategori == 2)
+                            <span class="badge badge-pill badge-danger">Negatif</span>
+                        @endif
+                    </td>
                     <td>
                     <!-- Main content -->
                     <section class="content">
@@ -152,7 +139,7 @@
                       <a href="/admin/data-testing/edit/{{$s->id}}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                       <a href="#" id="{{$s->id}}" nama="{{$s->twitter_account}}" class="btn btn-danger btn-sm delete"><i class="fas fa-trash-alt"></i></a>
                     </td>
-                    
+
                   </tr>
                   @endforeach
                   </tbody>
@@ -170,7 +157,7 @@
     </section>
     <!-- /.content -->
 
-    
+
 @section('javascripts')
 <!-- DataTables  & Plugins -->
 <script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
@@ -206,7 +193,7 @@
 <script>
   $('.delete').click(function(){
   var id_datatesting = $(this).attr('id');
-  var nama_akun = $(this).attr('nama') 
+  var nama_akun = $(this).attr('nama')
   Swal.fire({
     title: 'Yakin?',
     text: "Mau hapus sentimen dari "+nama_akun+ " ?",
