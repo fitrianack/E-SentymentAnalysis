@@ -1,6 +1,6 @@
 @extends('administrator.layouts.app2')
 
-@section('title', 'Ubah Password E-Sentyment Analysis')
+@section('title', 'Ubah Password E-Sentiment Analysis')
 
 @section('profil', 'active')
 

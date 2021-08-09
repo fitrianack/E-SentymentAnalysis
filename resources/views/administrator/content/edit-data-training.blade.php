@@ -1,6 +1,6 @@
 @extends('administrator.layouts.app2')
 
-@section('title', 'Edit Data Training E-Sentyment Analysis')
+@section('title', 'Edit Data Training E-Sentiment Analysis')
 
 @section('data-training', 'active')
 @section('master-data', 'active')

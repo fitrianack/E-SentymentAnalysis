@@ -38,6 +38,7 @@ class DataTestingController extends Controller
         $raw_sentimen->sentimen = $request->sentimen;
         $raw_sentimen->twitter_account = $request->twitter_account;
         $raw_sentimen->tgl_waktu = $request->tgl_waktu;
+        $raw_sentimen->kategori_id = $request->kategori_id;
 
         $client = new \GuzzleHttp\Client();
         $request = $client->request('POST', 'https://e-sentymentanalysis.herokuapp.com/predict', [

@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>E-Sentyment Analysis</title>
+  <title>E-Sentiment Analysis</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -46,7 +46,7 @@
     <div class="container">
 
       <div id="logo" class="pull-left">
-        <h1><a href="/"><span>E-</span>Sentyment Analysis Jabar</a></h1>
+        <h1><a href="/"><span>E-</span>SentimentAnalysis</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" title="" /></a>-->
       </div>
@@ -56,7 +56,7 @@
           <li class="menu-active"><a href="#main">Beranda</a></li>
           <li><a href="#features">Statistik</a></li>
           <li><a href="#team">Sentimen</a></li>
-          <li><a href="#contact">Form Kritik dan Saran</a></li>
+          <li><a href="#contact">Form Masukkan</a></li>
         </ul>
       </nav><!-- #nav-menu-container -->
     </div>
@@ -67,8 +67,8 @@
     <div class="hero-container" data-aos="fade-in">
       <h1></h1>
       <h1>WILUJENG SUMPING!</h1>
-      <h2>Ini adalah Halaman E-Sentyment Analysis Pemerintah Provinsi Jawa Barat</h2>
-      <img src="{{ asset ('assets/img/hero-img.png') }}" alt="Hero Imgs" data-aos="zoom-out" data-aos-delay="100">
+      <h2>Ini adalah Halaman E-Sentiment Analysis Pemerintah Provinsi Jawa Barat</h2>
+      <img src="{{ asset ('assets/img/landing-page.jpg') }}" style="width: 350px" alt="Hero Imgs" data-aos="zoom-out" data-aos-delay="100">
       <a href="#get-started" class="btn-get-started scrollto">Mulai</a>
     </div>
   </section><!-- End Hero Section -->
@@ -95,26 +95,61 @@
     </section><!-- End Get Started Section -->
 
     <!-- ======= Features Section ======= -->
-    <section id="features" class="padd-section text-center">
+    <section >
 
-      <div class="container" data-aos="fade-up">
+      <div class="container-fluid" data-aos="fade-up">
         <div class="section-title text-center">
           <h2>Statistik</h2>
         </div>
-        <div class="row" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-6">
           <!-- DONUT CHART -->
             <div class="card">
+                <div class="card-header">
+                <h3 class="card-title">Data Training</h3>
+              </div>
+
               <div class="card-body">
-                <canvas id="donutChart" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+                <canvas id="donutChart1" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
               </div>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
           </div>
-        </div>
+
+        <div class="col-md-6">
+          <!-- DONUT CHART -->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Data Testing</h3>
+              </div>
+              <div class="card-body">
+                <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- BAR CHART -->
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Bar Chart</h3>
+              </div>
+              <div class="card-body">
+                <div class="chart" >
+                  <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+          </div>
+            <!-- /.card -->
+
+          </div>
       </div>
     </section><!-- End Features Section -->
+
 
     <!-- ======= Features Section ======= -->
     <section id="team" class="padd-section text-center">
@@ -157,25 +192,25 @@
 
       <div class="container" data-aos="fade-up">
         <div class="section-title text-center">
-          <h2>Form Kritik dan Saran</h2>
+          <h2>Tulis masukkan anda disini</h2>
         </div>
           <div class="col-lg-12 col-md-6">
             <div class="form">
-              <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <form action="" method="post" role="form" class="php-email-form">
                 <div class="form-group">
                   <input type="email" name="email" class="form-control" id="email" placeholder="Email" data-rule="minlen:8" data-msg="Masukkan paling sedikit 8 karakter" />
                   <div class="validate"></div>
                 </div>
                 <div class="form-group">
-                  <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Tolong tuliskan kritik dan saran anda di sini..." placeholder="Kritik dan Saran"></textarea>
+                  <textarea class="form-control" name="sentimen" rows="5" data-rule="required" data-msg="Tuliskan masukkan anda di sini..." placeholder="Kritik dan Saran"></textarea>
                   <div class="validate"></div>
                 </div>
                 <div class="mb-3">
                   <div class="loading">Loading</div>
                   <div class="error-message"></div>
-                  <div class="sent-message">Kritik & saran berhasil dikirim. Terima kasih!</div>
+                  <div class="sent-message">Masukkan yang anda kirim terdeteksi sebagai sentimen Positif</div>
                 </div>
-                <div class="text-center"><button type="submit">Kirim kritik & saran</button></div>
+                <div class="text-center"><button type="submit">Kirim masukkan</button></div>
               </form>
             </div>
           </div>
@@ -233,6 +268,35 @@
         ],
         datasets: [
           {
+            data: [<?php echo "$positif_test_count"; ?>, <?php echo "$negatif_test_count"; ?>],
+            backgroundColor : ['#3c8dbc', '#d2d6de'],
+          }
+        ]
+      }
+      var donutOptions     = {
+        maintainAspectRatio : false,
+        responsive : true,
+      }
+      //Create pie or douhnut chart
+      // You can switch between pie and douhnut using the method below.
+      new Chart(donutChartCanvas, {
+        type: 'doughnut',
+        data: donutData,
+        options: donutOptions
+      })
+
+      //-------------
+      //- DONUT CHART -
+      //-------------
+      // Get context with jQuery - using jQuery's .get() method.
+      var donutChartCanvas = $('#donutChart1').get(0).getContext('2d')
+      var donutData        = {
+        labels: [
+            'Positif',
+            'Negatif',
+        ],
+        datasets: [
+          {
             data: [<?php echo "$positifCount"; ?>, <?php echo "$negatifCount"; ?>],
             backgroundColor : ['#00a65a', '#f56954'],
           }
@@ -249,6 +313,48 @@
         data: donutData,
         options: donutOptions
       })
+
+      //-------------
+    //- BAR CHART -
+    //-------------
+    var barChartCanvas = document.getElementById("barChart").getContext('2d')
+    var myChart = new Chart(barChartCanvas,{
+        type: 'bar',
+        data:{
+            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+				datasets: [{
+					label: '# of Votes',
+					data: [12, 19, 3, 23, 2, 3],
+					backgroundColor: [
+					'rgba(255, 99, 132, 0.2)',
+					'rgba(54, 162, 235, 0.2)',
+					'rgba(255, 206, 86, 0.2)',
+					'rgba(75, 192, 192, 0.2)',
+					'rgba(153, 102, 255, 0.2)',
+					'rgba(255, 159, 64, 0.2)'
+					],
+					borderColor: [
+					'rgba(255,99,132,1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)',
+					'rgba(255, 159, 64, 1)'
+					],
+					borderWidth: 1
+				}]
+        },
+        options: {
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero:true
+						}
+					}]
+				}
+			}
+    });
+
   </script>
 </body>
 

@@ -44,7 +44,6 @@ class AdminController extends Controller
 
     public function update_profil(Request $request, $id)
     {
-
         if ($request->hasFile('gambar')) {
             $resource = $request->file('gambar');
             $name   = $resource->getClientOriginalName();

@@ -1,6 +1,6 @@
 @extends('administrator.layouts.app2')
 
-@section('title', 'Data Testing E-Sentyment Analysis')
+@section('title', 'Data Testing E-Sentiment Analysis')
 
 @section('data-testing', 'active')
 
@@ -123,7 +123,11 @@
                     <td>{{$s->sentimen}}</td>
                     <td>{{$s->tgl_waktu}}</td>
                     <td>{{$s->twitter_account}}</td>
-                    <td>{{$s->kategoris->kategori}}</td>
+                    <td>@if($s->kategori_id == 1)
+                            <span class="badge badge-pill badge-success">Positif</span>
+                        @elseif($s->kategori_id == 2)
+                            <span class="badge badge-pill badge-danger">Negatif</span>
+                        @endif</td>
                     <td>
                         @if($s->predict_kategori == 1)
                             <span class="badge badge-pill badge-success">Positif</span>

@@ -1,6 +1,6 @@
 @extends('administrator.layouts.app2')
 
-@section('title', 'Visualisasi E-Sentyment Analysis')
+@section('title', 'Visualisasi E-Sentiment Analysis')
 
 @section('analisis-sentimen', 'active')
 
@@ -70,7 +70,26 @@
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
+
           </div>
+          <div class="col-md-6">
+          <div class="card card-warning">
+              <div class="card-header">
+                  <h3 class="card-title">Word Clouds</h3>
+                  <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+                  </div>
+                <div class="card-body">
+                <div id="word"></div>
+            </div>
+        </div>
+        </div>
           <div class="col-md-6">
             <!-- BAR CHART -->
             <div class="card card-primary">
@@ -185,7 +204,7 @@
           pointStrokeColor    : '#c1c7d1',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : [65, 59, 80, 81]
+          data                : [ <?php echo "$april_negatif_count"; ?>, <?php echo "$mei_negatif_count"; ?>, <?php echo "$juni_negatif_count"; ?>, <?php echo "$juli_negatif_count"; ?>]
         },
       ]
     }
@@ -233,7 +252,94 @@
       options: barChartOptions
     })
 
+     anychart.onDocumentReady(function () {
+      var data = [
+    {"x": "pemprov", "value": 1090, },
+    {"x": "jabar", "value": 9830, category: "Indo-European"},
+    {"x": "ridwan", "value": 5440, category: "Indo-European"},
+    {"x": "kamil", "value": 5270, category: "Indo-European"},
+    {"x": "provinsi", "value": 4220, category: "Afro-Asiatic"},
+    {"x": "emil", "value": 2810, category: "Austronesian"},
+    {"x": "pemerintah", "value": 2670, category: "Indo-European"},
+    {"x": "masyarakat", "value": 2610, category: "Indo-European"},
+    {"x": "jawa", "value": 2290, category: "Indo-European"},
+    {"x": "barat", "value": 2290, category: "Indo-European"},
+    {"x": "daerah", "value": 1500, category: "Afro-Asiatic"},
+    {"x": "bantuan", "value": 1480, category: "Indo-European"},
+    {"x": "kinerja", "value": 1290, category: "Japonic"},
+    {"x": "gubernur", "value": 1290, category: "Indo-European"},
+    {"x": "kami", "value": 1200, category: "Indo-European"},
+    {"x": "semoga", "value": 1310, category: "Indo-European"},
+    {"x": "covid", "value": 1100, category: "Indo-European"},
+    {"x": "allah", "value": 1220, category: "Indo-European"},
+    {"x": "lapangan", "value": 1250, category: "Indo-European"},
+    {"x": "tahun", "value": 1500, },
+    {"x": "warga", "value": 1000, },
+    {"x": "usaha", "value": 1000, },
+    {"x": "pasti", "value": 1000, },
+    {"x": "orang", "value": 1000, },
+    {"x": "anak", "value": 1900, },
+    {"x": "mohon", "value": 1100, },
+    {"x": "semangat", "value": 2900, },
+    {"x": "terima", "value": 1100, },
+    {"x": "indonesia", "value": 1000, },
+    {"x": "sekolah", "value": 1600, },
+    {"x": "semoga", "value": 1090, },
+    {"x": "bayar", "value": 1090, },
+    {"x": "hidup", "value": 1090, },
+    {"x": "sangat", "value": 1090, },
+    {"x": "kalo", "value": 1090, },
+    {"x": "makan", "value": 1090, },
+    {"x": "bansos", "value": 1000, },
+    {"x": "jika", "value": 1090, },
+    {"x": "sasaran", "value": 290, },
+    {"x": "jangan", "value": 100, },
+    {"x": "gini", "value": 1080, },
+    {"x": "tepat", "value": 1110, },
+    {"x": "salah", "value": 1090, },
+    {"x": "cepat", "value": 1090, },
+    {"x": "dalam", "value": 1090, },
+    {"x": "jadi", "value": 1090, },
+    {"x": "sama", "value": 1090, },
+    {"x": "akan", "value": 1090, },
+    {"x": "buat", "value": 1500, },
+    {"x": "mau", "value": 1090, },
+    {"x": "paling", "value": 1090, },
+    {"x": "bawah", "value": 2000, },
+    {"x": "sesuai", "value": 1090, },
+    {"x": "baru", "value": 1090, },
+    {"x": "punya", "value": 1090, },
+    {"x": "kena", "value": 1090, },
+    {"x": "apa", "value": 1090, },
+    {"x": "tiap", "value": 1090, },
+    {"x": "kerja", "value": 100, },
+    {"x": "mereka", "value": 1090, },
+    {"x": "makin", "value": 1090, },
+    {"x": "sangat", "value": 1090, },
 
+  ];
+        // create tag cloud
+        var chart = anychart.tagCloud(data);
+        var colors = anychart.scales
+            .ordinalColor()
+            .colors(['#26959f', '#f18126', '#3b8ad8', '#60727b', '#e24b26']);
+
+        // set chart title
+        chart
+
+          // set array of angles, by which words will be placed
+          .angles([-90, 0, 90])
+          // additional empty space in all directions from the text, only in pixels
+          // set color scale
+            .colorScale(colors);
+
+        // set data with settings
+
+        // set container id for the chart
+        chart.container('word');
+        // initiate chart drawing
+        chart.draw();
+    });
 </script>
 
 @endsection

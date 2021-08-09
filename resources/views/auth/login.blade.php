@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login E-Sentyment Analysis</title>
+  <title>Login E-Sentiment Analysis</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -18,7 +18,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="/"><b>E-</b>Sentyment Analysis</a>
+    <a href="/"><b>E-</b>Sentiment Analysis</a>
     <img style="width:110px; height: 125px;" class="img-fluid" src="{{asset('assets\img\west_java.png')}}" alt="Responsive image">
   </div>
   <!-- /.login-logo -->
@@ -65,17 +65,17 @@
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <button type="submit" class="btn btn-primary btn-block">Masuk</button>
           </div>
           <!-- /.col -->
         </div>
       </form>
 
-      <p class="mb-1">
+      {{-- <p class="mb-1">
         @if (Route::has('password.request'))
         <a href="{{ route('password.request') }}">Lupa Password</a>
         @endif
-      </p>
+      </p> --}}
       <!-- <p class="mb-0">
         <a href="{{ route('register') }}" class="text-center">Registrasi</a>
       </p> -->

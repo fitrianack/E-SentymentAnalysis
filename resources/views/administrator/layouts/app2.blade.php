@@ -10,6 +10,15 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{ asset ('plugins/fontawesome-free/css/all.min.css') }}">
+  <script src="https://cdn.anychart.com/samples/tag-cloud/the-old-man-and-the-sea/ignore-items.js"></script>
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+  <link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css" type="text/css" rel="stylesheet">
+  <link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css" type="text/css" rel="stylesheet">
+
   <!-- IonIcons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
@@ -30,7 +39,7 @@
         <!-- Brand Logo -->
         <a href="index3.html" class="brand-link">
             <img src="{{asset('assets/img/west_java.png')}}" class="brand-image img-circle elevation-3" style="opacity: .8">
-            <span class="brand-text font-weight-light">E-Sentyment Analysis</span>
+            <span class="brand-text font-weight-light">E-Sentiment Analysis</span>
         </a>
 
         <!-- Sidebar -->

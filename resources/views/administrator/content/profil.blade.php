@@ -1,6 +1,6 @@
 @extends('administrator.layouts.app2')
 
-@section('title', 'Kelola Profil E-Sentyment Analysis')
+@section('title', 'Kelola Profil E-Sentiment Analysis')
 
 @section('profil', 'active')
 

@@ -1,6 +1,6 @@
 @extends('administrator.layouts.app2')
 
-@section('title', 'Dashboard E-Sentyment Analysis')
+@section('title', 'Dashboard E-Sentiment Analysis')
 
 @section('dashboard', 'active')
 
@@ -46,7 +46,7 @@
             <!-- small card -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>30</h3>
+                <h3>{{$raw_sentimen}}</h3>
 
                 <p>Data Testing</p>
               </div>
@@ -61,7 +61,7 @@
         <div class="col-md-12">
             <div class="card card-outline card-primary">
               <div class="card-header">
-                <h3 class="card-title"> <i class="fas fa-chart-pie"></i> Tentang E-Sentyment Analysis</h3>
+                <h3 class="card-title"> <i class="fas fa-chart-pie"></i> Tentang E-Sentiment Analysis</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">

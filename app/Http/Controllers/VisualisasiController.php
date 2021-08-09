@@ -41,19 +41,24 @@ class VisualisasiController extends Controller
         $negatif_test = RawSentimen::where('predict_kategori', '2')->get();
         $negatif_test_count = $negatif_test->count();
 
-        //Line Chart Data Training
+        //Bar Chart Data Training
         $april_positif = Sentimen::whereMonth('tgl_waktu', '=', 4)->where('kategori_id', '1')->get();
         $april_positif_count = $april_positif->count();
-
-
         $mei_positif = Sentimen::whereMonth('tgl_waktu', '=', 5)->where('kategori_id', '1')->get();
         $mei_positif_count = $mei_positif->count();
-
         $juni_positif = Sentimen::whereMonth('tgl_waktu', '=', 6)->where('kategori_id', '1')->get();
         $juni_positif_count = $juni_positif->count();
-
         $juli_positif = Sentimen::whereMonth('tgl_waktu', '=', 7)->where('kategori_id', '1')->get();
         $juli_positif_count = $juli_positif->count();
+
+        $april_negatif = Sentimen::whereMonth('tgl_waktu', '=', 4)->where('kategori_id', '2')->get();
+        $april_negatif_count = $april_negatif->count();
+        $mei_negatif = Sentimen::whereMonth('tgl_waktu', '=', 5)->where('kategori_id', '2')->get();
+        $mei_negatif_count = $mei_negatif->count();
+        $juni_negatif = Sentimen::whereMonth('tgl_waktu', '=', 6)->where('kategori_id', '2')->get();
+        $juni_negatif_count = $juni_negatif->count();
+        $juli_negatif = Sentimen::whereMonth('tgl_waktu', '=', 7)->where('kategori_id', '2')->get();
+        $juli_negatif_count = $juli_negatif->count();
 
 
         return view('administrator.content.visualisasi', compact(
@@ -67,6 +72,10 @@ class VisualisasiController extends Controller
             'mei_positif_count',
             'juni_positif_count',
             'juli_positif_count',
+            'april_negatif_count',
+            'mei_negatif_count',
+            'juni_negatif_count',
+            'juli_negatif_count',
         ));
     }
 }
