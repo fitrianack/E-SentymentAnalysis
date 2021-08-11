@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Phpml\Classification\NaiveBayes;
 use App\Sentimen;
-
+use Maatwebsite\Excel\Row;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +17,7 @@ use App\Sentimen;
 */
 
 //landing page
-Route::get('/', 'UmumController@welcome');
+Route::get('/', 'UmumController@welcome')->name('welcome');
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Login dan logout
@@ -51,3 +51,5 @@ Route::post('/admin/data-testing/predict', 'DataTestingController@predict');
 Route::get('/admin/data-testing/edit/{id}', 'DataTestingController@edit');
 Route::post('/admin/data-testing/update/{id}', 'DataTestingController@update');
 Route::get('/admin/data-testing/delete/{id}', 'DataTestingController@delete');
+
+Route::post('/predict', 'UmumController@predict');

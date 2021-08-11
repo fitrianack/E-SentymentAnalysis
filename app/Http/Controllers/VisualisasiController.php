@@ -29,9 +29,8 @@ class VisualisasiController extends Controller
     {
         //Donut Chart Data Training
         $positif = Sentimen::where('kategori_id', '1')->get();
-        $positifCount = $positif->count();
-
         $negatif = Sentimen::where('kategori_id', '2')->get();
+        $positifCount = $positif->count();
         $negatifCount = $negatif->count();
 
         //Donut Chart Data Testing

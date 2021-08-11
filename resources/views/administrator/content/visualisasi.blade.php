@@ -70,7 +70,6 @@
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
-
           </div>
           <div class="col-md-6">
           <div class="card card-warning">
@@ -86,7 +85,7 @@
                 </div>
                   </div>
                 <div class="card-body">
-                <div id="word"></div>
+                <div id="word" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></div>
             </div>
         </div>
         </div>
@@ -252,7 +251,7 @@
       options: barChartOptions
     })
 
-     anychart.onDocumentReady(function () {
+    anychart.onDocumentReady(function () {
       var data = [
     {"x": "pemprov", "value": 1090, },
     {"x": "jabar", "value": 9830, category: "Indo-European"},

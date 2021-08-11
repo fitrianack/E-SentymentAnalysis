@@ -12,6 +12,15 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Roboto:100,300,400,500,700|Philosopher:400,400i,700,700i" rel="stylesheet">
 
+  <!-- Any Chart -->
+  <script src="https://cdn.anychart.com/samples/tag-cloud/the-old-man-and-the-sea/ignore-items.js"></script>
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+  <link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css" type="text/css" rel="stylesheet">
+  <link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css" type="text/css" rel="stylesheet">
   <!-- Vendor CSS Files -->
   <link href="{{ asset ('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ asset ('assets/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
@@ -55,7 +64,7 @@
         <ul class="nav-menu">
           <li class="menu-active"><a href="#main">Beranda</a></li>
           <li><a href="#features">Statistik</a></li>
-          <li><a href="#team">Sentimen</a></li>
+          <li><a href="#team">Data Sentimen</a></li>
           <li><a href="#contact">Form Masukkan</a></li>
         </ul>
       </nav><!-- #nav-menu-container -->
@@ -95,7 +104,7 @@
     </section><!-- End Get Started Section -->
 
     <!-- ======= Features Section ======= -->
-    <section >
+    <section id="features" class="padd-section text-center">
 
       <div class="container-fluid" data-aos="fade-up">
         <div class="section-title text-center">
@@ -130,22 +139,31 @@
             </div>
             <!-- /.card -->
           </div>
-          <!-- BAR CHART -->
           <div class="col-md-6">
-            <div class="card">
+          <div class="card card-warning">
+              <div class="card-header">
+                  <h3 class="card-title">Word Clouds</h3>
+                  </div>
+                <div class="card-body">
+                <div id="word" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></div>
+            </div>
+        </div>
+        </div>
+        <div class="col-md-6">
+            <!-- BAR CHART -->
+            <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title">Bar Chart</h3>
               </div>
               <div class="card-body">
-                <div class="chart" >
+                <div class="chart">
                   <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                 </div>
               </div>
               <!-- /.card-body -->
             </div>
-          </div>
             <!-- /.card -->
-
+          </div>
           </div>
       </div>
     </section><!-- End Features Section -->
@@ -156,7 +174,7 @@
 
       <div class="container" data-aos="fade-up">
         <div class="section-title text-center">
-          <h2>Sentimen</h2>
+          <h2>Data Sentimen</h2>
         </div>
 
         <table id="example" class="table table-striped table-bordered" style="width:100%">
@@ -196,7 +214,8 @@
         </div>
           <div class="col-lg-12 col-md-6">
             <div class="form">
-              <form action="" method="post" role="form" class="php-email-form">
+              <form action="/predict" method="post" role="form" class="php-email-form">
+                @csrf
                 <div class="form-group">
                   <input type="email" name="email" class="form-control" id="email" placeholder="Email" data-rule="minlen:8" data-msg="Masukkan paling sedikit 8 karakter" />
                   <div class="validate"></div>
@@ -208,7 +227,7 @@
                 <div class="mb-3">
                   <div class="loading">Loading</div>
                   <div class="error-message"></div>
-                  <div class="sent-message">Masukkan yang anda kirim terdeteksi sebagai sentimen Positif</div>
+                  <div class="sent-message"></div>
                 </div>
                 <div class="text-center"><button type="submit">Kirim masukkan</button></div>
               </form>
@@ -314,45 +333,192 @@
         options: donutOptions
       })
 
-      //-------------
+    var areaChartData = {
+      labels  : ['April', 'May', 'June', 'July'],
+      datasets: [
+        {
+          label               : 'Positif',
+          backgroundColor     : 'rgba(60,141,188,0.9)',
+          borderColor         : 'rgba(60,141,188,0.8)',
+          pointRadius          : false,
+          pointColor          : '#3b8bba',
+          pointStrokeColor    : 'rgba(60,141,188,1)',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(60,141,188,1)',
+          data                : [ <?php echo "$april_positif_count"; ?>, <?php echo "$mei_positif_count"; ?>, <?php echo "$juni_positif_count"; ?>, <?php echo "$juli_positif_count"; ?>]
+        },
+        {
+          label               : 'Negatif',
+          backgroundColor     : 'rgba(210, 214, 222, 1)',
+          borderColor         : 'rgba(210, 214, 222, 1)',
+          pointRadius         : false,
+          pointColor          : 'rgba(210, 214, 222, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : [ <?php echo "$april_negatif_count"; ?>, <?php echo "$mei_negatif_count"; ?>, <?php echo "$juni_negatif_count"; ?>, <?php echo "$juli_negatif_count"; ?>]
+        },
+      ]
+    }
+
+    //-------------
     //- BAR CHART -
     //-------------
-    var barChartCanvas = document.getElementById("barChart").getContext('2d')
-    var myChart = new Chart(barChartCanvas,{
-        type: 'bar',
-        data:{
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-				datasets: [{
-					label: '# of Votes',
-					data: [12, 19, 3, 23, 2, 3],
-					backgroundColor: [
-					'rgba(255, 99, 132, 0.2)',
-					'rgba(54, 162, 235, 0.2)',
-					'rgba(255, 206, 86, 0.2)',
-					'rgba(75, 192, 192, 0.2)',
-					'rgba(153, 102, 255, 0.2)',
-					'rgba(255, 159, 64, 0.2)'
-					],
-					borderColor: [
-					'rgba(255,99,132,1)',
-					'rgba(54, 162, 235, 1)',
-					'rgba(255, 206, 86, 1)',
-					'rgba(75, 192, 192, 1)',
-					'rgba(153, 102, 255, 1)',
-					'rgba(255, 159, 64, 1)'
-					],
-					borderWidth: 1
-				}]
+
+    var areaChartData = {
+      labels  : ['April', 'May', 'June', 'July'],
+      datasets: [
+        {
+          label               : 'Positif',
+          backgroundColor     : 'rgba(60,141,188,0.9)',
+          borderColor         : 'rgba(60,141,188,0.8)',
+          pointRadius          : false,
+          pointColor          : '#3b8bba',
+          pointStrokeColor    : 'rgba(60,141,188,1)',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(60,141,188,1)',
+          data                : [ <?php echo "$april_positif_count"; ?>, <?php echo "$mei_positif_count"; ?>, <?php echo "$juni_positif_count"; ?>, <?php echo "$juli_positif_count"; ?>]
         },
-        options: {
-				scales: {
-					yAxes: [{
-						ticks: {
-							beginAtZero:true
-						}
-					}]
-				}
-			}
+        {
+          label               : 'Negatif',
+          backgroundColor     : 'rgba(210, 214, 222, 1)',
+          borderColor         : 'rgba(210, 214, 222, 1)',
+          pointRadius         : false,
+          pointColor          : 'rgba(210, 214, 222, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : [ <?php echo "$april_negatif_count"; ?>, <?php echo "$mei_negatif_count"; ?>, <?php echo "$juni_negatif_count"; ?>, <?php echo "$juli_negatif_count"; ?>]
+        },
+      ]
+    }
+
+    var areaChartOptions = {
+      maintainAspectRatio : false,
+      responsive : true,
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          gridLines : {
+            display : false,
+          }
+        }],
+        yAxes: [{
+          gridLines : {
+            display : false,
+          }
+        }]
+      }
+    }
+
+    var barChartCanvas = $('#barChart').get(0).getContext('2d')
+    var barChartData = $.extend(true, {}, areaChartData)
+    var temp0 = areaChartData.datasets[0]
+    var temp1 = areaChartData.datasets[1]
+    barChartData.datasets[0] = temp1
+    barChartData.datasets[1] = temp0
+
+    var barChartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      datasetFill             : false
+    }
+
+    new Chart(barChartCanvas, {
+      type: 'bar',
+      data: barChartData,
+      options: barChartOptions
+    })
+
+    anychart.onDocumentReady(function () {
+      var data = [
+    {"x": "pemprov", "value": 1090, },
+    {"x": "jabar", "value": 9830, category: "Indo-European"},
+    {"x": "ridwan", "value": 5440, category: "Indo-European"},
+    {"x": "kamil", "value": 5270, category: "Indo-European"},
+    {"x": "provinsi", "value": 4220, category: "Afro-Asiatic"},
+    {"x": "emil", "value": 2810, category: "Austronesian"},
+    {"x": "pemerintah", "value": 2670, category: "Indo-European"},
+    {"x": "masyarakat", "value": 2610, category: "Indo-European"},
+    {"x": "jawa", "value": 2290, category: "Indo-European"},
+    {"x": "barat", "value": 2290, category: "Indo-European"},
+    {"x": "daerah", "value": 1500, category: "Afro-Asiatic"},
+    {"x": "bantuan", "value": 1480, category: "Indo-European"},
+    {"x": "kinerja", "value": 1290, category: "Japonic"},
+    {"x": "gubernur", "value": 1290, category: "Indo-European"},
+    {"x": "kami", "value": 1200, category: "Indo-European"},
+    {"x": "semoga", "value": 1310, category: "Indo-European"},
+    {"x": "covid", "value": 1100, category: "Indo-European"},
+    {"x": "allah", "value": 1220, category: "Indo-European"},
+    {"x": "lapangan", "value": 1250, category: "Indo-European"},
+    {"x": "tahun", "value": 1500, },
+    {"x": "warga", "value": 1000, },
+    {"x": "usaha", "value": 1000, },
+    {"x": "pasti", "value": 1000, },
+    {"x": "orang", "value": 1000, },
+    {"x": "anak", "value": 1900, },
+    {"x": "mohon", "value": 1100, },
+    {"x": "semangat", "value": 2900, },
+    {"x": "terima", "value": 1100, },
+    {"x": "indonesia", "value": 1000, },
+    {"x": "sekolah", "value": 1600, },
+    {"x": "semoga", "value": 1090, },
+    {"x": "bayar", "value": 1090, },
+    {"x": "hidup", "value": 1090, },
+    {"x": "sangat", "value": 1090, },
+    {"x": "kalo", "value": 1090, },
+    {"x": "makan", "value": 1090, },
+    {"x": "bansos", "value": 1000, },
+    {"x": "jika", "value": 1090, },
+    {"x": "sasaran", "value": 290, },
+    {"x": "jangan", "value": 100, },
+    {"x": "gini", "value": 1080, },
+    {"x": "tepat", "value": 1110, },
+    {"x": "salah", "value": 1090, },
+    {"x": "cepat", "value": 1090, },
+    {"x": "dalam", "value": 1090, },
+    {"x": "jadi", "value": 1090, },
+    {"x": "sama", "value": 1090, },
+    {"x": "akan", "value": 1090, },
+    {"x": "buat", "value": 1500, },
+    {"x": "mau", "value": 1090, },
+    {"x": "paling", "value": 1090, },
+    {"x": "bawah", "value": 2000, },
+    {"x": "sesuai", "value": 1090, },
+    {"x": "baru", "value": 1090, },
+    {"x": "punya", "value": 1090, },
+    {"x": "kena", "value": 1090, },
+    {"x": "apa", "value": 1090, },
+    {"x": "tiap", "value": 1090, },
+    {"x": "kerja", "value": 100, },
+    {"x": "mereka", "value": 1090, },
+    {"x": "makin", "value": 1090, },
+    {"x": "sangat", "value": 1090, },
+
+  ];
+        // create tag cloud
+        var chart = anychart.tagCloud(data);
+        var colors = anychart.scales
+            .ordinalColor()
+            .colors(['#26959f', '#f18126', '#3b8ad8', '#60727b', '#e24b26']);
+
+        // set chart title
+        chart
+
+          // set array of angles, by which words will be placed
+          .angles([-90, 0, 90])
+          // additional empty space in all directions from the text, only in pixels
+          // set color scale
+            .colorScale(colors);
+
+        // set data with settings
+
+        // set container id for the chart
+        chart.container('word');
+        // initiate chart drawing
+        chart.draw();
     });
 
   </script>
